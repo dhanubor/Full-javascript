@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডভান্সড ক্যালকুলেটর</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2>অ্যাডভান্সড ক্যালকুলেটর</h2>
+        <input type="number" id="num1" placeholder="প্রথম সংখ্যা লিখুন">
+        <select id="operation">
+            <option value="+">যোগ (+)</option>
+            <option value="-">বিয়োগ (-)</option>
+            <option value="*">গুণ (*)</option>
+            <option value="/">ভাগ (/)</option>
+            <option value="%">ভাগশেষ (%)</option>
+        </select>
+        <input type="number" id="num2" placeholder="দ্বিতীয় সংখ্যা লিখুন">
+        <button onclick="calculate()">ফলাফল দেখুন</button>
+        <p class="result" id="result">ফলাফল: </p>
+    </div>
+
+    <script>
+        function calculate() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let operation = document.getElementById("operation").value;
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "দয়া করে সঠিক সংখ্যা লিখুন!";
+            } else {
+                switch (operation) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num2 !== 0 ? num1 / num2 : "0 দ্বারা ভাগ করা যায় না!";
+                        break;
+                    case '%':
+                        result = num2 !== 0 ? num1 % num2 : "0 দ্বারা ভাগ করা যায় না!";
+                        break;
+                    default:
+                        result = "ভুল অপারেশন!";
+                }
+            }
+
+            document.getElementById("result").innerText = "ফলাফল: " + result;
+        }
+    </script>
+
+</body>
+</html>
